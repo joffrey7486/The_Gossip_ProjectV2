@@ -60,3 +60,12 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# add random datas for seed file
+gem 'faker'
+
+# add authentication features 
+gem "devise"
+
+# generate table with datas
+gem 'table_print'
