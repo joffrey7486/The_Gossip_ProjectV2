@@ -1,9 +1,13 @@
 <h1>Potin</h1>
-<%= link_to "Modifier le potin", edit_gossip_path(@gossip.id)%>
-<%= link_to "Suppimer le potin", gossip_path(@gossip), data: { confirm: "Euuuh tu es sûr ?", method: 'DELETE' }%>
+<% if @gossip.user == current_user%>
+  <%= link_to "Modifier le potin", edit_gossip_path(@gossip.id)%>
+  <%= link_to "Suppimer le potin", gossip_path(@gossip), method: :delete%>
+<% end %>
 
 <li>Titre: <%= @gossip.title %></li>
 <li>Potin: <%= @gossip.content %></li>
+<li><%= @gossip.likes.count%></li>
+<li><%= link_to "Ville: #{@gossip.user.city.name}", city_path(@gossip.user.city.id)%></li>
 <li>Auteur: <%= @gossip.user.first_name %> <%= @gossip.user.last_name %></li><br />
 
 <% @gossip.comments.each do |comment|%>

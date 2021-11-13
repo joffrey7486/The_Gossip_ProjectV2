@@ -1,2 +1,19 @@
-<h1>User#show</h1>
-<p>Find me in app/views/user/show.html.erb</p>
+<h1>Mon profil</h1>
+
+<ul>
+    <li>Prénom: <%= @user.first_name %></li>
+    <li>Nom: <%= @user.last_name %></li>
+    <li>Auteur: <%= @user.age %> ans</li>
+    <li><%= link_to "Ville: #{@user.city.name}", city_path(@user.city.id)%></li>
+</ul>
+
+<h2>Mes potins</h2>
+<% @user.gossips.each do |gossip| %>
+    <ul>
+        <li>Titre: <%= gossip.title %></li>
+        <li>Potin: <%= gossip.content %></li>
+        <li><%= link_to "Voir ce potin", gossip_path(gossip.id) %></li>
+        <li><%= link_to "Voir les autres potins de: #{gossip.user.city.name}", city_path(@user.city.id)%></li>
+        <li><%= gossip.likes.count%></li>
+    </ul>
+<% end %>

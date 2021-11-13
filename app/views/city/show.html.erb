@@ -1,9 +1,10 @@
-<h1><%= @city.name %></h1>
-<p><%= @city.zip_code %></p>
+<h1>Ville: <%= @city.name %></h1>
+<p>Code postal: <%= @city.zip_code %></p>
 <% @city.gossips.each do |gossip|%>
     <ul>
-        <li>Titre: <%= gossip.title %></li>
+        <li><%= link_to "Potin: #{gossip.title}", gossip_path(gossip.id) %></li>
         <li>Potin: <%= gossip.content %></li>
         <li>Auteur: <%= gossip.user.first_name %> <%= gossip.user.last_name %></li>
     </ul>
 <% end %>
+

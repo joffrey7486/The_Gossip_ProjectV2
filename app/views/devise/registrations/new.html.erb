@@ -19,6 +19,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :city %><br />
+    <%= f.select :city, options_for_select(@city_options), autocomplete: "Ton secteur" %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>

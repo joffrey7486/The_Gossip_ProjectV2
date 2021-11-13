@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'user/show'
   root to: "gossips#index"
 
   devise_for :users
