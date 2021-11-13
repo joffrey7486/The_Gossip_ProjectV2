@@ -1,12 +1,16 @@
 <h1>Modifie ton potin</h1>
 
+<div class="cards-center">
+    <div class="card-body">
+      <%= form_for @gossip do |f| %>
+        <%= f.label 'Titre' %><br />
+        <%= f.text_field :title %><br />
 
-<%= form_for @gossip do |f| %>
-  <%= f.label 'Titre' %><br />
-  <%= f.text_field :title %><br />
+        <%= f.label 'Potin' %><br />
+        <%= f.text_area :content %><br />
 
-  <%= f.label 'Potin' %><br />
-  <%= f.text_area :content %><br />
+        <%= f.submit "Modifier", class:"custom-btn btn-6"%>
+      <% end %>
+    </div>
+</div>
 
-  <%= f.submit "Modifier"%>
-<% end %>

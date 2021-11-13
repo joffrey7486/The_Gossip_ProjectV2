@@ -1,25 +1,42 @@
 <h1>Potin</h1>
 <% if @gossip.user == current_user%>
-  <%= link_to "Modifier le potin", edit_gossip_path(@gossip.id)%>
-  <%= link_to "Suppimer le potin", gossip_path(@gossip), method: :delete%>
+  <div class="choices">
+    <%= link_to "Modifier le potin", edit_gossip_path(@gossip.id), class:"custom-btn btn-6"%>
+    <%= link_to "Suppimer le potin", gossip_path(@gossip), method: :delete, class:"custom-btn btn-6"%>
+  </div>
 <% end %>
 
-<li>Titre: <%= @gossip.title %></li>
-<li>Potin: <%= @gossip.content %></li>
-<li><%= @gossip.likes.count%></li>
-<li><%= link_to "Ville: #{@gossip.user.city.name}", city_path(@gossip.user.city.id)%></li>
-<li>Auteur: <%= @gossip.user.first_name %> <%= @gossip.user.last_name %></li><br />
+<div class="cards-center">
+    <div class="card-body">
+        <h4 class="card-title"><%= @gossip.title %></h4>
+        <p class="card-text"><%= @gossip.content %></p>
+        <%= link_to "Ville: #{@gossip.user.city.name}", city_path(@gossip.user.city.id)%>
+        Auteur: <%= @gossip.user.first_name %> <%= @gossip.user.last_name %><br />
+        <div class="social"><i class="far fa-thumbs-up"></i><% @gossip.likes.count%></div>
+    </div>
+</div>
 
-<% @gossip.comments.each do |comment|%>
-    <li><%= comment.content %></li>
-    <li><%= comment.user.first_name %></li><br />
-    <% if comment.user == current_user %>
-        <%= link_to "Modifier le commentaire", edit_gossip_comment_path(@gossip.id, comment.id) %>
-        <%= link_to "Supprimer le commentaire", gossip_comment_path(@gossip.id, comment.id), method: :delete %>
+<div class="cards-center">
+  <% @gossip.comments.each do |comment|%>
+    <div class="card-body">
+      <%= comment.content %><br />
+      <%= comment.user.first_name %><br />
+      <% if comment.user == current_user %>
+        <div class="choices">
+          <%= link_to "Modifier", edit_gossip_comment_path(@gossip.id, comment.id), class:"custom-btn btn-6" %>
+          <%= link_to "Supprimer", gossip_comment_path(@gossip.id, comment.id), method: :delete, class:"custom-btn btn-6" %>
+        </div>
+      <% end %>
+    </div> 
+  <% end %>
+</div>
+
+
+<div class="cards-center">
+  <div class="card-body">
+    <%= form_tag(gossip_comments_path(@gossip.id), :method => "post") do %>
+    <%= text_field_tag :content, params[:comment], placeholder: "Ajoute ton com!!"%>
+    <%= submit_tag "Submit", class:"custom-btn btn-6" %>
     <% end %>
-<% end %>
-
-<%= form_tag(gossip_comments_path(@gossip.id), :method => "post") do %>
-  <%= text_field_tag :content, params[:comment], placeholder: "Ajoute ton com!!" %>
-  <%= submit_tag "Submit"%>
-<% end %>
+  </div>  
+</div>

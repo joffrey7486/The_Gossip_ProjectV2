@@ -11,19 +11,42 @@
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
   </head>
 
   <body>
-    <%= link_to "Home", gossips_path%>
-    <% if user_signed_in? %>
-      <%= link_to "Mon profil", user_path(current_user.id)%>
-      <%= link_to "Créer un potin", new_gossip_path %>
-      <%= link_to "Se déconnecter", destroy_user_session_path ,method: "delete"%>
-      <h2>Bienvenue <%= current_user.first_name %></h2>
-    <% else %>
-      <%= link_to "S\'inscrire", new_user_registration_path%>
-      <%= link_to "Se connecter", new_user_session_path%>
-    <% end %>
+    <nav class="navbar navbar-expand-xl" style="background: #e0e5ec;">
+      <%= link_to "The Gossip Project", gossips_path, class: "navbar-brand"%>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-example-2">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbar-example-2">
+        <div class="navbar-nav mr-auto">
+          <% if user_signed_in? %>
+            <%= link_to "Mon profil", user_path(current_user.id), class: "nav-item nav-link"%>
+            <%= link_to "Créer un potin", new_gossip_path, class: "nav-item nav-link" %>
+            <%= link_to "Se déconnecter", destroy_user_session_path ,method: "delete", class: "nav-item nav-link"%>
+          <% else %>
+            <%= link_to "S\'inscrire", new_user_registration_path, class: "nav-item nav-link"%>
+            <%= link_to "Se connecter", new_user_session_path, class: "nav-item nav-link"%>
+          <% end %>
+        </div>
+        <% if user_signed_in? %>
+          <span class="navbar-text">
+            <h2>Bienvenue <%= current_user.first_name %></h2>
+          </span>
+        <% end %>
+      </div>
+    </nav>
+
+
     <%= yield %>
+
+
   </body>
 </html>

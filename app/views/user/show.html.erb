@@ -1,19 +1,24 @@
 <h1>Mon profil</h1>
-
-<ul>
-    <li>Prénom: <%= @user.first_name %></li>
-    <li>Nom: <%= @user.last_name %></li>
-    <li>Auteur: <%= @user.age %> ans</li>
-    <li><%= link_to "Ville: #{@user.city.name}", city_path(@user.city.id)%></li>
-</ul>
+<div class="cards-center">
+    <div class="card-body">
+        <ul>
+            <p>Prénom: <%= @user.first_name %></p>
+            <p>Nom: <%= @user.last_name %></p>
+            <p>Auteur: <%= @user.age %> ans</p>
+            <p><%= link_to "Ville: #{@user.city.name}", city_path(@user.city.id)%></p>
+        </ul>
+    </div>
+</div>
 
 <h2>Mes potins</h2>
-<% @user.gossips.each do |gossip| %>
-    <ul>
-        <li>Titre: <%= gossip.title %></li>
-        <li>Potin: <%= gossip.content %></li>
-        <li><%= link_to "Voir ce potin", gossip_path(gossip.id) %></li>
-        <li><%= link_to "Voir les autres potins de: #{gossip.user.city.name}", city_path(@user.city.id)%></li>
-        <li><%= gossip.likes.count%></li>
-    </ul>
-<% end %>
+<div class="cards-center">
+    <% @user.gossips.each do |gossip| %>
+        <div class="card-body">
+            <ul>
+                <p>Titre: <%= gossip.title %></p>
+                <p>Potin: <%= gossip.content %></p>
+                <p><%= link_to "Voir ce potin", gossip_path(gossip.id) %></p>
+            </ul>
+        </div>
+    <% end %>
+</div>

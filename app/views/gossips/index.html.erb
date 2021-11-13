@@ -1,24 +1,22 @@
 
-<% @gossips.each do |gossip| %>
-    <ul>
-        <li>Titre: <%= gossip.title %></li>
-        <li>Potin: <%= gossip.content %></li>
-        <li>Auteur: <%= gossip.user.first_name %> <%= gossip.user.last_name %></li>
-        <li><%= link_to "Voir ce potin", gossip_path(gossip.id) %></li>
-        <% if user_signed_in? %>
-            <% if Like.find_by(user_id: current_user.id, gossip_id: gossip.id) %> 
-                <%= link_to "#{gossip.likes.count}", gossip_like_path(gossip.id, current_user.id), method: :delete %>
+<div class="cards-center">
+    <% @gossips.each do |gossip| %>
+        <div class="card-body">
+            <h4 class="card-title"><%= gossip.title %></h4>
+            <p class="card-text"><%= gossip.content %></p>
+            <small class="text-muted">
+                <%= gossip.user.first_name %> <%= gossip.user.last_name %>
+            </small>
+            <%= link_to "Voir ce potin", gossip_path(gossip.id), class:"custom-btn btn-6" %>
+            <% if user_signed_in? %>
+                <% if Like.find_by(user_id: current_user.id, gossip_id: gossip.id) %> 
+                    <div class="social"><%= link_to "#{gossip.likes.count}", gossip_like_path(gossip.id, current_user.id), method: :delete %> <i class="far fa-thumbs-up"></i></div>
+                <% else %>
+                    <div class="social"><%= link_to "#{gossip.likes.count}", gossip_likes_path(gossip.id, :index), method: :post %> <i class="far fa-thumbs-up"></i></div>
+                <% end %>
             <% else %>
-                <%= link_to "#{gossip.likes.count}", gossip_likes_path(gossip.id, :index), method: :post %>
+                <div class="social"><i class="far fa-thumbs-up"><% gossip.likes.count%></i></div>
             <% end %>
-        <% else %>
-            <% gossip.likes.count %>
-        <% end %>
-    </ul>
-
-
-    <%= link_to "Ville", city_path(gossip.user.city.id)%>
-<% end %>
-
-
- 
+        </div>
+    <% end %>
+</div>
