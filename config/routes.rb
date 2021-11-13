@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  root to: "gossips#index"
+
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :user, only: [:show]
+  resources :city, only: [:show]
+  resources :gossips do
+    resources :comments, except: [:index, :show]
+    resources :likes, only: [:create, :destroy]
+  end
+
 end

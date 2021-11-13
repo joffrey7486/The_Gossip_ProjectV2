@@ -1,0 +1,12 @@
+<h1>Modifie ton potin</h1>
+
+
+<%= form_for @gossip do |f| %>
+  <%= f.label 'Titre' %><br />
+  <%= f.text_field :title %><br />
+
+  <%= f.label 'Potin' %><br />
+  <%= f.text_area :content %><br />
+
+  <%= f.submit "Modifier"%>
+<% end %>

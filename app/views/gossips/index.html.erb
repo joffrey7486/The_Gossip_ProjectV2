@@ -1,0 +1,18 @@
+<h1>Bienvenue</h1>
+<p>Find me in app/views/gossips/index.html.erb</p>
+
+<% @gossips.each do |gossip| %>
+    <ul>
+        <li>Titre: <%= gossip.title %></li>
+        <li>Potin: <%= gossip.content %></li>
+        <li>Auteur: <%= gossip.user.first_name %> <%= gossip.user.last_name %></li>
+        <li><%= link_to "Voir ce potin", gossip_path(gossip.id) %></li>
+    </ul>
+
+
+    <%= link_to "Ville", city_path(gossip.user.city.id)%>
+
+<% end %>
+
+
+ 

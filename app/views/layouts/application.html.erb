@@ -7,9 +7,20 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
   </head>
 
   <body>
+    <%= link_to "Home", gossips_path%>
+    <% if user_signed_in? %>
+      <%= link_to "Mon profil", user_path(current_user.id)%>
+      <%= link_to "Créer un potin", new_gossip_path %>
+    <% else %>
+
+    <% end %>
     <%= yield %>
   </body>
 </html>

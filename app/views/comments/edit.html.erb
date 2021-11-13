@@ -1,0 +1,9 @@
+<h1>Modifie ton commentaire </h1>
+
+<%= form_for [@gossip, @comment] do |f| %>
+    <%= f.text_field :content %>
+    <button type="submit">Modifier le commentaire</button>
+<% end %>
+
+
+

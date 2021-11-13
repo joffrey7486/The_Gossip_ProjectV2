@@ -69,3 +69,8 @@ gem "devise"
 
 # generate table with datas
 gem 'table_print'
+
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
+end
